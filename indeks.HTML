@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Produksi Padi Kabupaten Lamongan</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: white;
+            margin: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            width: 60px;
+            margin-right: 15px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        .sumber {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header website -->
+    <header>
+        <img src="logo lamongan.png" alt="Logo Kabupaten Lamongan">
+
+        <div>
+            <h2>KABUPATEN LAMONGAN</h2>
+            <p>Dinas Pertanian Kabupaten Lamongan</p>
+        </div>
+    </header>
+
+    <hr>
+
+    <!-- Judul website -->
+    <h1>Produksi Padi Kabupaten Lamongan</h1>
+    <h2>Tahun 2019</h2>
+    <p>Data produksi padi berdasarkan kecamatan.</p>
+
+    <!-- Pencarian -->
+    <input type="text" id="cari" placeholder="Cari kecamatan...">
+
+    <!-- Tabel data -->
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Kecamatan</th>
+                <th>Produksi Padi (Ton)</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabelData"></tbody>
+    </table>
+
+    <!-- Sumber data -->
+    <p class="sumber">
+        Sumber: BPS Kabupaten Lamongan Tahun 2020
+    </p>
+
+    <script>
+
+        // Data produksi padi
+        var data = [
+            ["Babat", 52007],
+            ["Bluluk", 32516],
+            ["Brondong", 7716],
+            ["Deket", 26918],
+            ["Glagah", 29104],
+            ["Kalitengah", 22464],
+            ["Karangbinangun", 33320],
+            ["Karanggeneng", 30620],
+            ["Kedungpring", 67254],
+            ["Kembangbahu", 61395],
+            ["Lamongan", 35126],
+            ["Laren", 49771],
+            ["Maduran", 31750],
+            ["Mantup", 50247],
+            ["Modo", 69548],
+            ["Ngimbang", 48090],
+            ["Paciran", 4327],
+            ["Pucuk", 47075],
+            ["Sambeng", 38773],
+            ["Sarirejo", 53382],
+            ["Sekaran", 42971],
+            ["Solokuro", 22759],
+            ["Sugio", 84418],
+            ["Sukodadi", 44129],
+            ["Sukorame", 30237],
+            ["Tikung", 57767],
+            ["Turi", 38852],
+            ["TOTAL", 1112536]
+        ];
+
+        // Menampilkan data ke dalam tabel
+        function tampilkanData(dataTampil) {
+
+            var isi = "";
+
+            for (var i = 0; i < dataTampil.length; i++) {
+
+                isi += "<tr>";
+                isi += "<td>" + (i + 1) + "</td>";
+                isi += "<td>" + dataTampil[i][0] + "</td>";
+                isi += "<td>" + dataTampil[i][1].toLocaleString("id-ID") + "</td>";
+                isi += "</tr>";
+
+            }
+
+            document.getElementById("tabelData").innerHTML = isi;
+        }
+
+        // Menampilkan seluruh data
+        tampilkanData(data);
+
+        // Fitur pencarian kecamatan
+        document.getElementById("cari").onkeyup = function() {
+
+            var kata = this.value.toLowerCase();
+            var hasil = [];
+
+            for (var i = 0; i < data.length; i++) {
+
+                if (data[i][0].toLowerCase().includes(kata)) {
+                    hasil.push(data[i]);
+                }
+
+            }
+
+            tampilkanData(hasil);
+        };
+
+    </script>
+
+</body>
+</html>
